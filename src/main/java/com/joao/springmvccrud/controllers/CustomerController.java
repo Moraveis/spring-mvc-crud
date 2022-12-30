@@ -1,6 +1,6 @@
 package com.joao.springmvccrud.controllers;
 
-import com.joao.springmvccrud.dao.CustomerDAOImpl;
+import com.joao.springmvccrud.dao.CustomerDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private final CustomerDAOImpl customerDao;
+    private final CustomerDAO customerDao;
 
-    public CustomerController(CustomerDAOImpl customerDao) {
+    public CustomerController(CustomerDAO customerDao) {
         this.customerDao = customerDao;
     }
 

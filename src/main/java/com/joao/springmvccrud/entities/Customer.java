@@ -1,7 +1,5 @@
 package com.joao.springmvccrud.entities;
 
-import com.joao.springmvccrud.dao.CustomerDAOImpl;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
