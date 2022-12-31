@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,14 +19,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    @Transactional
     public List<Customer> getCustomers() {
         Session session = sessionFactory.getCurrentSession();
 
         Query<Customer> findAllQuery = session.createQuery("from Customer", Customer.class);
 
-        List<Customer> customers = findAllQuery.getResultList();
-
-        return customers;
+        return findAllQuery.getResultList();
     }
 }

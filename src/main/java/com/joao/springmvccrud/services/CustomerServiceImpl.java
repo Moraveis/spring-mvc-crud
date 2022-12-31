@@ -1,0 +1,24 @@
+package com.joao.springmvccrud.services;
+
+import com.joao.springmvccrud.dao.CustomerDAO;
+import com.joao.springmvccrud.entities.Customer;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+    private final CustomerDAO customerDao;
+
+    public CustomerServiceImpl(CustomerDAO customerDao) {
+        this.customerDao = customerDao;
+    }
+
+    @Override
+    @Transactional
+    public List<Customer> getCustomers() {
+        return customerDao.getCustomers();
+    }
+}

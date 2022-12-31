@@ -1,23 +1,24 @@
 package com.joao.springmvccrud.controllers;
 
-import com.joao.springmvccrud.dao.CustomerDAO;
+import com.joao.springmvccrud.services.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private final CustomerDAO customerDao;
+    private final CustomerService customerService;
 
-    public CustomerController(CustomerDAO customerDao) {
-        this.customerDao = customerDao;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String getCostumers(Model model) {
-        model.addAttribute("customers", customerDao.getCustomers());
+        model.addAttribute("customers", customerService.getCustomers());
         return "list-customers";
     }
 }
