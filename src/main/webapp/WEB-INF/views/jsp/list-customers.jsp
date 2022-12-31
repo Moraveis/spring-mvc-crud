@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>List of Customers</title>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
     <h1>List of Customers WIP</h1>
