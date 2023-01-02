@@ -13,4 +13,7 @@ public interface CustomerDAO {
     Customer getCustomer(Integer id);
 
     void deleteCustomer(Integer id);
+
+    List<Customer> searchCustomers(String searchName);
+
 }

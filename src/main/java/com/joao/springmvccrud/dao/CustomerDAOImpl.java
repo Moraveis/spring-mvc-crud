@@ -1,6 +1,7 @@
 package com.joao.springmvccrud.dao;
 
 import com.joao.springmvccrud.entities.Customer;
+import org.apache.logging.log4j.util.Strings;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -44,5 +45,20 @@ public class CustomerDAOImpl implements CustomerDAO {
         Session session = sessionFactory.getCurrentSession();
         Customer customer = session.get(Customer.class, id);
         session.delete(customer);
+    }
+
+    @Override
+    public List<Customer> searchCustomers(String searchName) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query<Customer> query;
+        if (!Strings.isEmpty(searchName.trim())) {
+            query = session.createQuery("from Customer where lower(firstName) like :theName or lower(lastName) like :theName", Customer.class);
+            query.setParameter("theName", "%" + searchName.toLowerCase() + "%");
+        } else {
+            query = session.createQuery("from Customer", Customer.class);
+        }
+
+        return query.getResultList();
     }
 }

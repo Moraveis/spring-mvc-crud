@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
@@ -49,5 +51,12 @@ public class CustomerController {
     public String deleteCustomer(@RequestParam("customerId") Integer id) {
         customerService.deleteCustomer(id);
         return "redirect:/customer/list";
+    }
+
+    @GetMapping("/search")
+    public String searchCustomers(@RequestParam("searchName") String searchName, Model model) {
+        List<Customer> customers = customerService.searchCustomers(searchName);
+        model.addAttribute("customers", customers);
+        return "list-customers";
     }
 }
